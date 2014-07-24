@@ -37,6 +37,7 @@ public class ChanalProgram {
 	public String getChannelXmlTvRecord(){
 		String chRecord = "<channel id=\"%s\"><display-name>%s</display-name><icon src=\"%s\"/></channel>";
 		chRecord = String.format(chRecord, chID, title, iconUrl);
+		chRecord += "\n";
 		return chRecord;
 	}
 	public String getProgramingXmlTvFormat(){

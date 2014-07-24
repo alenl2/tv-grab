@@ -15,7 +15,8 @@ public class Main {
 	public static String t2Url = "http://tv.t-2.net/";
     public static void main( String[] args )
     {
-    	String xmlTvOut = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?><!DOCTYPE tv SYSTEM \"xmltv.dtd\"><tv source-info-url=\"http://komp.si/\" source-info-name=\"T-2 Shedule\" generator-info-name=\"XMLTV/$Id: tv_grab_t2\" generator-info-url=\"http://www.xmltv.org/\">";
+
+    	String xmlTvOut = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?><!DOCTYPE tv SYSTEM \"xmltv.dtd\"><tv source-info-url=\"http://komp.si/\" source-info-name=\"T-2 Shedule\" generator-info-name=\"XMLTV/$Id: tv_grab_t2\" generator-info-url=\"http://www.xmltv.org/\">\n";
     	ArrayList<ChanalProgram> list = parseAllChanals();
 
     	for (ChanalProgram chanalProgram : list) {
@@ -35,7 +36,6 @@ public class Main {
 			System.out.println("Could not save the xml file");
 			e.printStackTrace();
 		}
-    	
 
     }
     
