@@ -126,7 +126,7 @@ public class ChanalProgramForDay {
     	//find the img of the chanal
     	Elements allImgs = doc.select("img");
     	for (Element element : allImgs) {
-			if(element.attr("src").startsWith("IMGTV")){
+			if(element.attr("src").startsWith("IMGTV") && element.attr("align").equals("right")){
 				return Main.t2Url+element.attr("src");
 			}
 		}

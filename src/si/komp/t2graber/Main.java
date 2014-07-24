@@ -1,7 +1,9 @@
 package si.komp.t2graber;
 
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
+import java.io.BufferedWriter;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.util.ArrayList;
 
 import org.joda.time.LocalDateTime;
@@ -16,7 +18,7 @@ public class Main {
     public static void main( String[] args )
     {
 
-    	String xmlTvOut = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?><!DOCTYPE tv SYSTEM \"xmltv.dtd\"><tv source-info-url=\"http://komp.si/\" source-info-name=\"T-2 Shedule\" generator-info-name=\"XMLTV/$Id: tv_grab_t2\" generator-info-url=\"http://www.xmltv.org/\">\n";
+    	String xmlTvOut = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><!DOCTYPE tv SYSTEM \"xmltv.dtd\"><tv source-info-url=\"http://komp.si/\" source-info-name=\"T-2 Shedule\" generator-info-name=\"XMLTV/$Id: tv_grab_t2\" generator-info-url=\"http://www.xmltv.org/\">\n";
     	ArrayList<ChanalProgram> list = parseAllChanals();
 
     	for (ChanalProgram chanalProgram : list) {
@@ -29,10 +31,13 @@ public class Main {
 		
     	xmlTvOut += "</tv>";
     	
+    	xmlTvOut = xmlTvOut.replace("&", "&amp;");
 		try {
-			new PrintWriter("t-2.xml").print(xmlTvOut);;
+			Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("t-2.xml"), "UTF-8"));
+			out.write(xmlTvOut);
+			out.close();
 			System.out.println("Done!");
-		} catch (FileNotFoundException e) {
+		} catch (Exception e) {
 			System.out.println("Could not save the xml file");
 			e.printStackTrace();
 		}
